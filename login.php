@@ -27,7 +27,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($resultado->num_rows) {
             //Revisar si el password es correcto
+            $usuario = mysqli_fetch_assoc($resultado);
 
+            //verificar si el password es correcto o no
+
+            $auth = password_verify($password, $usuario['password']);
+            if ($auth) {
+                //El usuario esta autenticado
+                session_start();
+
+                //Llenar el arreglo de la sesion
+                $_SESSION['usuario'] = $usuario['email'];
+                $_SESSION['login'] = true;
+
+                header('Location: /Proyecto_connect/admin/index.php');
+            } else {
+                $errores[] = "La contraseña es incorrecta";
+            }
         } else {
             $errores[] = "El Usuario no existe";
         }

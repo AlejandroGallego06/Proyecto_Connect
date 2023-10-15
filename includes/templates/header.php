@@ -1,3 +1,12 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+$auth = $_SESSION['login'] ?? false;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +37,12 @@
                         <a href="anuncios.php">Anuncios</a>
                         <a href="blog.php">Blog</a>
                         <a href="contacto.php">Contacto</a>
+                        <?php if ($auth) { ?>
+                            <a href="/Proyecto_connect/admin/index.php">Admin</a>
+                            <a href="/Proyecto_connect/cerrar_sesion.php">Cerrar Sesion</a>
+                        <?php } else { ?>
+                            <a href="/Proyecto_connect/login.php">Iniciar Sesion</a>
+                        <?php } ?>
                     </nav>
                 </div>
 

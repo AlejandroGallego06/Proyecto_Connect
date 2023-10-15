@@ -1,4 +1,11 @@
 <?php
+require '../includes/funciones.php';
+$auth = estaAutenticado();
+
+if (!$auth) {
+    header('Location: /Proyecto_connect/index.php');
+}
+// var_dump($_SESSION);
 
 //Importar la conexion
 require '../includes/config/database.php';
@@ -29,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require '../includes/funciones.php';
+
 incluirTemplate('headerAdmin');
 ?>
 
