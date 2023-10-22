@@ -1,23 +1,20 @@
 @use 'base/mixins' as m;
 
-.no-webp .inicio{
-    background-image: url('../img/header.jpg');
-}
-
-.webp .inicio{
-    background-image: url('../img/header.webp');
-}
 
 .header{
     background-color: $grisOscuro;
     padding: 0 0 3rem 0;
 
     &.inicio{
+    background-image: url('../img/header2.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 
         @include m.tablet{
+            &.fijo{
+                background-attachment: fixed;
+            }
             min-height: 50rem;
         }
 

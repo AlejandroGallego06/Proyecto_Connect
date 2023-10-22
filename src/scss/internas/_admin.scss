@@ -35,9 +35,22 @@ table.propiedades{
     .imagen-tabla{
         width: 15rem;
     }
+
+    &.amarillo{
+        thead{
+            background-color: $amarillo;
+        }
+    }
 }
 
 .imagen-pequeña{
     width: 20rem;
+    margin: 1rem;
+}
+
+.creacion{
+    //crear un contenedor para los botones, para separarlos entre si
+    display: flex;
+    justify-content: space-around;
     margin: 1rem;
 }

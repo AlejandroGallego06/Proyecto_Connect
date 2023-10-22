@@ -13,12 +13,14 @@ $db = conectarDB();
 
 //Escribir el Query
 $query = "SELECT * FROM barcos";
-
+$queryRutas = "SELECT * FROM rutas";
 //Consultar la BD
 $resultadoConsulta = mysqli_query($db, $query);
+$resultadoConsultaRutas = mysqli_query($db, $queryRutas);
 
 //Muestra mensaje condicional
 $resultado = $_GET['resultado'] ?? null;
+$resultadoRutas = $_GET['resultadoRutas'] ?? null;
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,6 +36,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: /Proyecto_connect/admin/index.php?resultado=3');
         }
     }
+
+    if ($id) {
+        //Eliminar la ruta
+        $queryRutas = "DELETE FROM rutas WHERE id = {$id}";
+        $resultadoRutas = mysqli_query($db, $queryRutas);
+
+        if ($resultadoRutas) {
+            header('Location: /Proyecto_connect/admin/index.php?resultadoRutas=3');
+        }
+    }
 }
 
 
@@ -44,16 +56,27 @@ incluirTemplate('headerAdmin');
     <h1>Administrador de Connect</h1>
 
     <?php if ($resultado == 1) : ?>
-        <p class="alerta exito">Anuncio Creado Correctamente</p>
+        <p class="alerta exito">Barco Creado Correctamente</p>
     <?php elseif ($resultado == 2) : ?>
-        <p class="alerta exito">Anuncio Actualizado Correctamente</p>
+        <p class="alerta exito">Barco Actualizado Correctamente</p>
     <?php elseif ($resultado == 3) : ?>
-        <p class="alerta exito">Anuncio Eliminado Correctamente</p>
+        <p class="alerta exito">Barco Eliminado Correctamente</p>
+    <?php elseif ($resultadoRutas == 1) : ?>
+        <p class="alerta exito">Ruta Creada Correctamente</p>
+    <?php elseif ($resultadoRutas == 2) : ?>
+        <p class="alerta exito">Ruta Actualizada Correctamente</p>
+    <?php elseif ($resultadoRutas == 3) : ?>
+        <p class="alerta exito">Ruta Eliminada Correctamente</p>
     <?php endif; ?>
 
-    <a href="/Proyecto_connect/admin/barcos/crear.php" class="boton boton-verde">Nuevo Barco</a>
+    <div class="creacion">
+        <a href="/Proyecto_connect/admin/barcos/crear.php" class="boton boton-verde">Nuevo Barco</a>
+        <a href="/Proyecto_connect/admin/rutas/crear.php" class="boton boton-amarillo-inline">Nueva Ruta</a>
+        <a href="/Proyecto_connect/admin/rutas/crear.php" class="boton boton-azul-inline">Nuevo Cliente</a>
+    </div>
 
-    <table class="propiedades">
+    <!-- Tabla de barcos -->
+    <table id="barcos" class="propiedades">
         <thead>
             <tr>
                 <th>ID</th>
@@ -78,6 +101,40 @@ incluirTemplate('headerAdmin');
                         </form>
 
                         <a href="barcos/actualizar.php?id=<?php echo $barco['id']; ?>" class="boton-amarillo">Actualizar</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+
+    <!-- Tabla de rutas -->
+    <table id="rutas" class="propiedades amarillo">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Distacia</th>
+                <th>Duracion</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody> <!-- Mostrar los resultados -->
+            <?php while ($ruta = mysqli_fetch_assoc($resultadoConsultaRutas)) : ?>
+                <tr>
+                    <td><?php echo $ruta['id']; ?></td>
+                    <td><?php echo $ruta['origen']; ?></td>
+                    <td><?php echo $ruta['destino']; ?></td>
+                    <td><?php echo $ruta['distancia']; ?></td>
+                    <td><?php echo $ruta['duracion']; ?></td>
+                    <td>
+                        <form method="POST" class="w-100">
+                            <input type="hidden" name="id" value="<?php echo $ruta['id']; ?>">
+                            <input type="submit" class="boton-rojo-block" value="Eliminar">
+                        </form>
+
+                        <a href="rutas/actualizar.php?id=<?php echo $ruta['id']; ?>" class="boton-amarillo">Actualizar</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

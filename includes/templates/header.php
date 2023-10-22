@@ -50,7 +50,7 @@ $auth = $_SESSION['login'] ?? false;
             </div> <!--.barra-->
 
             <?php if ($inicio) { ?>
-                <h1>Venta de Casas y Departamentos Exclusivos de Lujo</h1>
+                <h1>Trasporte maritimo de personas</h1>
             <?php } ?>
 
         </div>

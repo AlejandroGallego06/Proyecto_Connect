@@ -89,7 +89,7 @@ incluirTemplate('headerAdminAC');
 ?>
 
 <main class="contenedor seccion">
-    <h1>Actualizar</h1>
+    <h1>Actualizar Barco</h1>
 
     <a href="/Proyecto_connect/admin/index.php" class="boton boton-verde">Volver</a>
 

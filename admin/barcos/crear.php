@@ -71,7 +71,7 @@ incluirTemplate('headerAdminAC');
 ?>
 
 <main class="contenedor seccion">
-    <h1>Crear</h1>
+    <h1>Crear Barco</h1>
 
     <a href="/Proyecto_connect/admin/index.php" class="boton boton-verde">Volver</a>
 
