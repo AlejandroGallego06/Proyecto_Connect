@@ -41,6 +41,12 @@ table.propiedades{
             background-color: $amarillo;
         }
     }
+
+    &.azul{
+        thead{
+            background-color: $azul;
+        }
+    }
 }
 
 .imagen-pequeña{

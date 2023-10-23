@@ -114,8 +114,40 @@ incluirTemplate('headerAdmin');
                 <th>ID</th>
                 <th>Origen</th>
                 <th>Destino</th>
-                <th>Distacia</th>
+                <th>Distancia</th>
                 <th>Duracion</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody> <!-- Mostrar los resultados -->
+            <?php while ($ruta = mysqli_fetch_assoc($resultadoConsultaRutas)) : ?>
+                <tr>
+                    <td><?php echo $ruta['id']; ?></td>
+                    <td><?php echo $ruta['origen']; ?></td>
+                    <td><?php echo $ruta['destino']; ?></td>
+                    <td><?php echo $ruta['distancia']; ?></td>
+                    <td><?php echo $ruta['duracion']; ?></td>
+                    <td>
+                        <form method="POST" class="w-100">
+                            <input type="hidden" name="id" value="<?php echo $ruta['id']; ?>">
+                            <input type="submit" class="boton-rojo-block" value="Eliminar">
+                        </form>
+
+                        <a href="rutas/actualizar.php?id=<?php echo $ruta['id']; ?>" class="boton-amarillo">Actualizar</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+
+    <!-- Tabla de Clientes -->
+    <table id="clientes" class="propiedades azul">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Telefono</th>
                 <th>Acciones</th>
             </tr>
         </thead>

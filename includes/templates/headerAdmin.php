@@ -25,8 +25,8 @@
                     <img class="boton-modo-oscuro" src="/Proyecto_connect/build/img/dark-mode.svg" alt="boton modo oscuro">
                     <nav class="navegacion">
                         <a href="#barcos">Barcos</a>
-                        <a href="../anuncios.php">Anuncios</a>
-                        <a href="../blog.php">Blog</a>
+                        <a href="#rutas">Rutas</a>
+                        <a href="#clientes">Clientes</a>
                         <a href="../contacto.php">Contacto</a>
                     </nav>
                 </div>
