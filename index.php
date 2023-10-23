@@ -1,5 +1,14 @@
 <?php
 require 'includes/funciones.php';
+
+
+require 'includes/config/database.php';
+$db = conectarDB();
+
+$queryRutas = "SELECT * FROM rutas";
+$resultadoConsultaRutas = mysqli_query($db, $queryRutas);
+$resultadoRutas = $_GET['resultadoRutas'] ?? null;
+
 incluirTemplate('header', true);
 ?>
 
@@ -31,44 +40,33 @@ incluirTemplate('header', true);
 </section><!--Contacto-->
 
 <div class="contenedor seccion seccion-inferior">
-    <section class="blog">
-        <h2>Nuestro Blog</h2>
+    <section class="tabla-rutas">
+        <!-- Tabla de rutas -->
+        <table id="rutas" class="propiedades amarillo">
+            <thead>
+                <tr>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Distancia</th>
+                    <th>Duracion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
 
-        <article class="entrada-blog">
-            <div class="imagen">
-                <picture>
-                    <source srcset="build/img/blog1.webp" type="image/webp">
-                    <source srcset="build/img/blog1.jpeg" type="image/jpeg">
-                    <img loading="lazy" src="build/img/blog1.jpg" alt="Texto Entrada Blog">
-                </picture>
-            </div>
-
-            <div class="texto-entrada">
-                <a href="entrada.html">
-                    <h4>Terraza en el techo de tu casa</h4>
-                    <p class="informacion-meta">Escrito el: <span>06/09/2023</span> Por: <span>Admin</span></p>
-                    <p>Consejos para construir una terraza en tu techo con los mejores materiales y ahorrando dinero</p>
-                </a>
-            </div>
-        </article>
-
-        <article class="entrada-blog">
-            <div class="imagen">
-                <picture>
-                    <source srcset="build/img/blog2.webp" type="image/webp">
-                    <source srcset="build/img/blog2.jpeg" type="image/jpeg">
-                    <img loading="lazy" src="build/img/blog2.jpg" alt="Texto Entrada Blog">
-                </picture>
-            </div>
-
-            <div class="texto-entrada">
-                <a href="entrada.html">
-                    <h4>Guia para la decoracion de tu hogar</h4>
-                    <p class="informacion-meta">Escrito el: <span>06/09/2023</span> Por: <span>Admin</span></p>
-                    <p>Maximiza el espacio de tu hogar con esta guía, aprende a combinar muebles y colores para darle vida a tu espacio</p>
-                </a>
-            </div>
-        </article>
+            <tbody> <!-- Mostrar los resultados -->
+                <?php while ($ruta = mysqli_fetch_assoc($resultadoConsultaRutas)) : ?>
+                    <tr>
+                        <td><?php echo $ruta['origen']; ?></td>
+                        <td><?php echo $ruta['destino']; ?></td>
+                        <td><?php echo $ruta['distancia']; ?></td>
+                        <td><?php echo $ruta['duracion']; ?></td>
+                        <td>
+                            <a href="#" class="boton boton-amarillo">Reservar</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
     </section><!--Blog-->
 
     <section class="testimoniales">
@@ -84,5 +82,6 @@ incluirTemplate('header', true);
 </div>
 
 <?php
+mysqli_close($db);
 incluirTemplate('footer')
 ?>
