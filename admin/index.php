@@ -14,13 +14,17 @@ $db = conectarDB();
 //Escribir el Query
 $query = "SELECT * FROM barcos";
 $queryRutas = "SELECT * FROM rutas";
+$queryClientes = "SELECT * FROM clientes";
+
 //Consultar la BD
 $resultadoConsulta = mysqli_query($db, $query);
 $resultadoConsultaRutas = mysqli_query($db, $queryRutas);
+$resultadoConsultaClientes = mysqli_query($db, $queryClientes);
 
 //Muestra mensaje condicional
 $resultado = $_GET['resultado'] ?? null;
 $resultadoRutas = $_GET['resultadoRutas'] ?? null;
+$resultadoClientes = $_GET['resultadoClientes'] ?? null;
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -46,6 +50,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: /Proyecto_connect/admin/index.php?resultadoRutas=3');
         }
     }
+
+    if ($id) {
+        //Eliminar el cliente
+        $queryClientes = "DELETE FROM clientes WHERE id = {$id}";
+        $resultadoClientes = mysqli_query($db, $queryClientes);
+
+        if ($resultadoClientes) {
+            header('Location: /Proyecto_connect/admin/index.php?resultadoClientes=3');
+        }
+    }
 }
 
 
@@ -67,12 +81,18 @@ incluirTemplate('headerAdmin');
         <p class="alerta exito">Ruta Actualizada Correctamente</p>
     <?php elseif ($resultadoRutas == 3) : ?>
         <p class="alerta exito">Ruta Eliminada Correctamente</p>
+    <?php elseif ($resultadoClientes == 1) : ?>
+        <p class="alerta exito">Cliente Creado Correctamente</p>
+    <?php elseif ($resultadoClientes == 2) : ?>
+        <p class="alerta exito">Cliente Actualizado Correctamente</p>
+    <?php elseif ($resultadoClientes == 3) : ?>
+        <p class="alerta exito">Cliente Eliminado Correctamente</p>
     <?php endif; ?>
 
     <div class="creacion">
         <a href="/Proyecto_connect/admin/barcos/crear.php" class="boton boton-verde">Nuevo Barco</a>
         <a href="/Proyecto_connect/admin/rutas/crear.php" class="boton boton-amarillo-inline">Nueva Ruta</a>
-        <a href="/Proyecto_connect/admin/rutas/crear.php" class="boton boton-azul-inline">Nuevo Cliente</a>
+        <a href="/Proyecto_connect/admin/clientes/crear.php" class="boton boton-azul-inline">Nuevo Cliente</a>
     </div>
 
     <!-- Tabla de barcos -->
@@ -146,6 +166,7 @@ incluirTemplate('headerAdmin');
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Nombre</th>
                 <th>Email</th>
                 <th>Telefono</th>
                 <th>Acciones</th>
@@ -153,20 +174,19 @@ incluirTemplate('headerAdmin');
         </thead>
 
         <tbody> <!-- Mostrar los resultados -->
-            <?php while ($ruta = mysqli_fetch_assoc($resultadoConsultaRutas)) : ?>
+            <?php while ($cliente = mysqli_fetch_assoc($resultadoConsultaClientes)) : ?>
                 <tr>
-                    <td><?php echo $ruta['id']; ?></td>
-                    <td><?php echo $ruta['origen']; ?></td>
-                    <td><?php echo $ruta['destino']; ?></td>
-                    <td><?php echo $ruta['distancia']; ?></td>
-                    <td><?php echo $ruta['duracion']; ?></td>
+                    <td><?php echo $cliente['id']; ?></td>
+                    <td><?php echo $cliente['nombre']; ?></td>
+                    <td><?php echo $cliente['email']; ?></td>
+                    <td><?php echo $cliente['telefono']; ?></td>
                     <td>
                         <form method="POST" class="w-100">
-                            <input type="hidden" name="id" value="<?php echo $ruta['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $clientes['id']; ?>">
                             <input type="submit" class="boton-rojo-block" value="Eliminar">
                         </form>
 
-                        <a href="rutas/actualizar.php?id=<?php echo $ruta['id']; ?>" class="boton-amarillo">Actualizar</a>
+                        <a href="clientes/actualizar.php?id=<?php echo $cliente['id']; ?>" class="boton-amarillo">Actualizar</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

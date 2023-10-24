@@ -16,11 +16,9 @@ incluirTemplate('header');
         </div>
 
         <div class="texto-nosotros">
-            <a href="entrada.html">
-                <h4>25 Años de Experiencia</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique placeat impedit molestiae eaque. Ad voluptas nemo et nulla quidem a dolorum exercitationem eligendi maiores consequuntur natus alias itaque, repellat Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia dolorem unde architecto debitis atque veniam eos praesentium, assumenda similique perferendis laborum deserunt corporis soluta rem neque.</p>
-                <p>Reprehenderit minus nemo aspernatur Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic rerum repellendus voluptatibus cum? Minima magni et eligendi sint maxime amet facilis, eius magnam earum dignissimos officia at alias fuga odio.</p>
-            </a>
+            <h4>25 Años de Experiencia</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique placeat impedit molestiae eaque. Ad voluptas nemo et nulla quidem a dolorum exercitationem eligendi maiores consequuntur natus alias itaque, repellat Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia dolorem unde architecto debitis atque veniam eos praesentium, assumenda similique perferendis laborum deserunt corporis soluta rem neque.</p>
+            <p>Reprehenderit minus nemo aspernatur Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic rerum repellendus voluptatibus cum? Minima magni et eligendi sint maxime amet facilis, eius magnam earum dignissimos officia at alias fuga odio.</p>
         </div>
     </section>
 

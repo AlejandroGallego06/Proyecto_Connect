@@ -13,10 +13,9 @@ $db = conectarDB();
 //Arreglo con mensaje de errores
 $errores = [];
 
-$origen = '';
-$destino = '';
-$distancia = '';
-$duracion = '';
+$nombre = '';
+$email = '';
+$telefono = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // echo "<pre>";
@@ -28,25 +27,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // echo "</pre>";
 
 
-    $origen = mysqli_real_escape_string($db, $_POST['origen']);
-    $destino = mysqli_real_escape_string($db, $_POST['destino']);
-    $distancia = mysqli_real_escape_string($db, $_POST['distancia']);
-    $duracion = mysqli_real_escape_string($db, $_POST['duracion']);
+    $nombre = mysqli_real_escape_string($db, $_POST['nombre']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $telefono = mysqli_real_escape_string($db, $_POST['telefono']);
 
-    if (!$origen) {
-        $errores[] = "Debes agregar un origen";
+    if (!$nombre) {
+        $errores[] = "Debes agregar un nombre";
     }
 
-    if (!$destino) {
-        $errores[] = "Debes agregar un destino";
+    if (!$email) {
+        $errores[] = "Debes agregar un email";
     }
 
-    if (!$distancia) {
-        $errores[] = "Debes agregar una distancia";
-    }
-
-    if (!$duracion) {
-        $errores[] = "Establece una duracion";
+    if (!$telefono) {
+        $errores[] = "Debes agregar una telefono";
     }
 
     // echo "<pre>";
@@ -56,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Revisar que el array de errores este vacio
     if (empty($errores)) {
 
-        $query = "INSERT INTO rutas (origen, destino, distancia, duracion) VALUES ('$origen', '$destino', '$distancia','$duracion');";
+        $query = "INSERT INTO clientes (nombre, email, telefono) VALUES ('$nombre', '$email', '$telefono');";
 
         var_dump($query);
 
@@ -65,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($resultado) {
             //Redireccionar al usuario
 
-            header('Location: /Proyecto_connect/admin/index.php?resultadoRutas=1');
+            header('Location: /Proyecto_connect/admin/index.php?resultadoClientes=1');
         }
     }
 }
@@ -77,7 +71,7 @@ incluirTemplate('headerAdminAC');
 ?>
 
 <main class="contenedor seccion">
-    <h1>Crear Ruta</h1>
+    <h1>Crear Cliente</h1>
 
     <a href="/Proyecto_connect/admin/index.php" class="boton boton-verde">Volver</a>
 
@@ -87,25 +81,22 @@ incluirTemplate('headerAdminAC');
         </div>
     <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="/Proyecto_connect/admin/rutas/crear.php" enctype="multipart/form-data">
+    <form class="formulario" method="POST" action="/Proyecto_connect/admin/clientes/crear.php" enctype="multipart/form-data">
         <fieldset>
-            <legend>Información Ruta</legend>
+            <legend>Información Cliente</legend>
 
-            <label for="origen">Origen:</label>
-            <input type="text" id="origen" name="origen" placeholder="Origen Ruta" value="<?php echo $origen; ?>">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" value="<?php echo $nombre; ?>">
 
-            <label for="destino">Destino:</label>
-            <input type="text" id="destino" name="destino" placeholder="Destino Ruta" value="<?php echo $destino; ?>">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" value="<?php echo $email; ?>">
 
-            <label for="distancia">Distancia (Millas):</label>
-            <input type="number" id="distancia" name="distancia" placeholder="Distancia Ruta" value="<?php echo $distancia; ?>">
-
-            <label for="duracion">Duracion (Dias):</label>
-            <input type="number" id="duracion" name="duracion" placeholder="Duracion Ruta" value="<?php echo $duracion; ?>">
+            <label for="telefono">Telefono:</label>
+            <input type="text" id="telefono" name="telefono" placeholder="Telefono" value="<?php echo $telefono; ?>">
 
         </fieldset>
 
-        <input type="submit" value="Crear Ruta" class="boton-verde">
+        <input type="submit" value="Crear Cliente" class="boton-verde">
     </form>
 </main>
 

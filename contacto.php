@@ -32,21 +32,6 @@ incluirTemplate('header');
         </fieldset>
 
         <fieldset>
-            <legend>Informacion sobre Propiedad</legend>
-
-            <label for="opciones">Vende o Compra</label>
-            <select name="" id="opciones">
-                <option value="" disabled selected>-- Seleccione --</option>
-                <option value="Compra">Compra</option>
-                <option value="Vende">Vende</option>
-            </select>
-
-            <label for="precio">Precio o Presupuesto</label>
-            <input type="number" id="precio">
-
-        </fieldset>
-
-        <fieldset>
             <legend>Contacto</legend>
 
             <p>Como desea ser contactado</p>

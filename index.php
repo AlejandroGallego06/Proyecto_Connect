@@ -34,9 +34,9 @@ incluirTemplate('header', true);
 </main>
 
 <section class="imagen-contacto">
-    <h2>Encuentra la casa de tus sueños</h2>
+    <h2>Descubre la experiencia de tus sueños en el mar</h2>
     <p>Llena el formulario de contacto y un asesor se pondra en contacto contigo a la brevedad</p>
-    <a href="contacto.html" class="boton-amarillo-inline">Contáctanos</a>
+    <a href="contacto.php" class="boton-amarillo-inline">Contáctanos</a>
 </section><!--Contacto-->
 
 <div class="contenedor seccion seccion-inferior">

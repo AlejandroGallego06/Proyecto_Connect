@@ -4,7 +4,7 @@ incluirTemplate('header');
 ?>
 
 <main class="contenedor ">
-    <h1>Casas y Departamentos en Venta</h1>
+    <h1>Novedades sobre Connect</h1>
 
 </main>
 
