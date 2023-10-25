@@ -74,7 +74,7 @@ incluirTemplate('header', true);
 
         <div class="testimonial">
             <blockquote>
-                El personal se comporto de una forma excelente, muy buena atención y la casa que me dieron cumple con todas las expectativas
+                El personal se comporto de una forma excelente, muy buena atención y servicio, los recomiendo ampliamente.
             </blockquote>
             <p>- Alejandro Gallego Castro</p>
         </div>

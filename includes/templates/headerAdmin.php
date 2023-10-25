@@ -27,7 +27,6 @@
                         <a href="#barcos">Barcos</a>
                         <a href="#rutas">Rutas</a>
                         <a href="#clientes">Clientes</a>
-                        <a href="../contacto.php">Contacto</a>
                     </nav>
                 </div>
 
