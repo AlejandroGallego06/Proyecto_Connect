@@ -114,6 +114,7 @@ incluirTemplate('headerAdmin');
                     <td><?php echo $barco['nombre']; ?></td>
                     <td><?php echo $barco['capacidad']; ?></td>
                     <td><?php echo $barco['estado']; ?></td>
+
                     <td>
                         <form method="POST" class="w-100">
                             <input type="hidden" name="id" value="<?php echo $barco['id']; ?>">
@@ -136,6 +137,7 @@ incluirTemplate('headerAdmin');
                 <th>Destino</th>
                 <th>Distancia</th>
                 <th>Duracion</th>
+                <th>Barco ID</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -148,6 +150,7 @@ incluirTemplate('headerAdmin');
                     <td><?php echo $ruta['destino']; ?></td>
                     <td><?php echo $ruta['distancia']; ?></td>
                     <td><?php echo $ruta['duracion']; ?></td>
+                    <td><?php echo $ruta['barco']; ?></td>
                     <td>
                         <form method="POST" class="w-100">
                             <input type="hidden" name="id" value="<?php echo $ruta['id']; ?>">

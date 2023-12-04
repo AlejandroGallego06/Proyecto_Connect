@@ -101,5 +101,5 @@ incluirTemplate('headerAdminAC');
 </main>
 
 <?php
-incluirTemplate('footer')
+incluirTemplate('footerAdmin');
 ?>

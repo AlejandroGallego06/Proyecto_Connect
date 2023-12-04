@@ -9,6 +9,9 @@ if (!$auth) {
 require '../../includes/config/database.php';
 $db = conectarDB();
 
+//Escribir el Query
+$query = "SELECT * FROM barcos";
+$resultado = mysqli_query($db, $query);
 
 //Arreglo con mensaje de errores
 $errores = [];
@@ -17,6 +20,7 @@ $origen = '';
 $destino = '';
 $distancia = '';
 $duracion = '';
+$barco = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // echo "<pre>";
@@ -32,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $destino = mysqli_real_escape_string($db, $_POST['destino']);
     $distancia = mysqli_real_escape_string($db, $_POST['distancia']);
     $duracion = mysqli_real_escape_string($db, $_POST['duracion']);
+    $barco = mysqli_real_escape_string($db, $_POST['barco']);
 
     if (!$origen) {
         $errores[] = "Debes agregar un origen";
@@ -49,6 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = "Establece una duracion";
     }
 
+    if (!$barco) {
+        $errores[] = "Debes agregar un barco";
+    }
+
     // echo "<pre>";
     // var_dump($errores);
     // echo "</pre>";
@@ -56,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Revisar que el array de errores este vacio
     if (empty($errores)) {
 
-        $query = "INSERT INTO rutas (origen, destino, distancia, duracion) VALUES ('$origen', '$destino', '$distancia','$duracion');";
+        $query = "INSERT INTO rutas (origen, destino, distancia, duracion, barco) VALUES ('$origen', '$destino', '$distancia','$duracion', '$barco');";
 
         var_dump($query);
 
@@ -105,10 +114,23 @@ incluirTemplate('headerAdminAC');
 
         </fieldset>
 
+        <fieldset>
+            <legend>Barco</legend>
+
+            <select name="barco">
+                <option value="">-- Seleccione --</option>
+                <?php while ($barcos = mysqli_fetch_assoc($resultado)) : ?>
+                    <option <?php echo $barco === $barcos['id'] ? 'selected' : ''; ?> value="<?php echo $barcos['id']; ?>">
+                        <?php echo $barcos['nombre']; ?>
+                    </option>
+                <?php endwhile; ?>
+            </select>
+        </fieldset>
+
         <input type="submit" value="Crear Ruta" class="boton-verde">
     </form>
 </main>
 
 <?php
-incluirTemplate('footer')
+incluirTemplate('footerAdmin');
 ?>

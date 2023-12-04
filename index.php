@@ -9,10 +9,21 @@ $queryRutas = "SELECT * FROM rutas";
 $resultadoConsultaRutas = mysqli_query($db, $queryRutas);
 $resultadoRutas = $_GET['resultadoRutas'] ?? null;
 
+$resultadoReserva = $_GET['resultadoReserva'] ?? null;
+
+
 incluirTemplate('header', true);
 ?>
 
 <main class="contenedor seccion">
+    <?php
+    // Verificar si hay un parámetro 'resultadoRutas' en la URL y si su valor es 1
+    if (isset($_GET['resultadoReserva']) && $_GET['resultadoReserva'] == 1) {
+        // Mostrar la notificación de reserva creada correctamente
+        echo '<div class="alerta exito">La reserva se creó correctamente</div>';
+    }
+    ?>
+
     <h1>Más sobre nosotros</h1>
     <div class="iconos-nosotros">
         <div class="icono">
@@ -61,7 +72,7 @@ incluirTemplate('header', true);
                         <td><?php echo $ruta['distancia']; ?></td>
                         <td><?php echo $ruta['duracion']; ?></td>
                         <td>
-                            <a href="#" class="boton boton-amarillo">Reservar</a>
+                            <a href="reserva.php?id=<?php echo $ruta['id']; ?>" class="boton boton-amarillo">Reservar</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

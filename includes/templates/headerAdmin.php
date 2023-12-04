@@ -27,6 +27,7 @@
                         <a href="#barcos">Barcos</a>
                         <a href="#rutas">Rutas</a>
                         <a href="#clientes">Clientes</a>
+                        <a href="/Proyecto_connect/admin/reservas/eliminar.php">Reservas</a>
                     </nav>
                 </div>
 
